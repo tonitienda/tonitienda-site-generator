@@ -1,12 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    images: {
-      unoptimized: true,
-    },
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    providerImportSource: "@mdx-js/react",
   },
-};
-
-module.exports = nextConfig;
+});
+module.exports = withMDX({
+  // Append the default value with md extensions
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+});
