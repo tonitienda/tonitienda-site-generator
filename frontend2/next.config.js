@@ -6,7 +6,16 @@ const withMDX = require("@next/mdx")({
     providerImportSource: "@mdx-js/react",
   },
 });
-module.exports = withMDX({
-  // Append the default value with md extensions
-  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
-});
+module.exports = {
+  webpack: (config, { isServer }) => {
+    // Fixes npm packages (mdx) that depend on `fs` module
+    if (!isServer) {
+      config.resolve.fallback.fs = false;
+    }
+    return config;
+  },
+  ...withMDX({
+    // Append the default value with md extensions
+    pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  }),
+};

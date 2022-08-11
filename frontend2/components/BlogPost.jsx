@@ -1,20 +1,19 @@
-import React, { Fragment } from 'react';
-import Link from './Link';
-import Header from './Header';
-import { Container, Box, Typography } from '@mui/core';
-import Footer from './Footer';
+import React, { Fragment } from "react";
+import Link from "./Link";
+import Header from "./Header";
+import { Container, Box, Typography } from "@mui/material";
+import Footer from "./Footer";
 
 const NextPost = ({ href, position, title }) => (
   <Link href={href}>
-    {position}{' '}
+    {position}{" "}
     <Typography variant="h6" component="h6">
       {title}
     </Typography>
   </Link>
 );
 
-
-const blogposts = []
+const blogposts = [];
 const BlogPost = ({ meta, children }) => {
   const current = blogposts.map(({ title }) => title).indexOf(meta.title);
   const next = blogposts[current - 1];
@@ -25,7 +24,7 @@ const BlogPost = ({ meta, children }) => {
       <Header />
       <Container maxWidth="md">
         <Box my={4}>
-          <Link href="/">{'< '} BACK TO BLOG</Link>
+          <Link href="/">{"< "} BACK TO BLOG</Link>
         </Box>
         <Typography variant="h4" component="h1" gutterBottom>
           {meta.title}
