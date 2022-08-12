@@ -1,29 +1,34 @@
 import React from "react";
-import { Typography, Button, Toolbar, AppBar } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Typography, Toolbar, AppBar } from "@mui/material";
 import Link from "./Link";
+import { createStyles, makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    borderBottom: `1px solid`,
-   // background: `linear-gradient(90deg, ${theme.palette.dark}, ${theme.palette.dark})`,
-    top: 0,
-    width: "100%",
-    position: "fixed",
-  },
-  toolbarTitle: {
-    flex: 1,
-  },
-  toolbarSecondary: {
-    justifyContent: "space-between",
-    overflowX: "auto",
-  },
-  toolbarLink: {
-    //padding: theme.spacing(1),
-    flexShrink: 0,
-  },
-  appBar: {},
-}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.red,
+    },
+    toolbar: {
+      borderBottom: `1px solid`,
+      background: `linear-gradient(90deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
+      top: 0,
+      width: "100%",
+      position: "fixed",
+    },
+    toolbarTitle: {
+      flex: 1,
+    },
+    toolbarSecondary: {
+      justifyContent: "space-between",
+      overflowX: "auto",
+    },
+    toolbarLink: {
+      //padding: theme.spacing(1),
+      flexShrink: 0,
+    },
+    appBar: {},
+  })
+);
 
 const Header = () => {
   const classes = useStyles();
