@@ -18,8 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Yarn Install
-        run: cd frontend2 && yarn
+        run: cd website && yarn
       - name: Build
-        run: cd frontend2 && yarn run build
+        run: cd website && yarn run build
       - name: Export
-        run: cd frontend2 && yarn run export
+        run: cd website && yarn run export
