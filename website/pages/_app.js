@@ -1,21 +1,18 @@
 import { MDXProvider } from "@mdx-js/react";
-import Typography from "@mui/material/Typography";
-import { createStyles, makeStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Typography } from "@mui/material";
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.red,
-    },
-  })
-);
-
-const theme = createTheme();
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../components/theme";
 
 // eslint-disable-next-line react/display-name
 const VariantTypo = (variant) => (props) =>
   <Typography variant={variant} gutterBottom={true} {...props}></Typography>;
+
+// const Pre = (props) => (
+//   <pre>
+//     <code>{props.children}</code>
+//   </pre>
+// );
 
 const components = {
   //   img: ResponsiveImage,
@@ -23,8 +20,8 @@ const components = {
   h2: VariantTypo("h3"),
   h3: VariantTypo("h4"),
   h4: VariantTypo("h5"),
-  //   p: Text,
-  //   pre: Pre,
+  p: VariantTypo("body1"),
+  // pre: Pre,
   //   code: InlineCode,
 };
 

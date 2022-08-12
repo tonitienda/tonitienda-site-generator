@@ -26,9 +26,6 @@ const BlogPost = ({ meta, children }) => {
         <Box my={4}>
           <Link href="/">{"< "} BACK TO BLOG</Link>
         </Box>
-        <Typography variant="h4" component="h1" gutterBottom>
-          {meta.title}
-        </Typography>
         {children}
         <hr />
         <Box my={4} display="flex" justifyContent="center">

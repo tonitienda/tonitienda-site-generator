@@ -5,9 +5,6 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      backgroundColor: theme.palette.red,
-    },
     toolbar: {
       borderBottom: `1px solid`,
       background: `linear-gradient(90deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
@@ -17,13 +14,16 @@ const useStyles = makeStyles((theme) =>
     },
     toolbarTitle: {
       flex: 1,
+      a: {
+        textDecoration: "none",
+      },
     },
     toolbarSecondary: {
       justifyContent: "space-between",
       overflowX: "auto",
     },
     toolbarLink: {
-      //padding: theme.spacing(1),
+      padding: theme.spacing(1),
       flexShrink: 0,
     },
     appBar: {},
@@ -44,7 +44,7 @@ const Header = () => {
           className={classes.toolbarTitle}
         >
           <Link color="inherit" href="/">
-            Tsoobame
+            tonitienda
           </Link>
         </Typography>
       </Toolbar>

@@ -7,7 +7,7 @@ function Copyright() {
   return (
     <Typography color="inherit" variant="body2" align="center">
       {"Copyright © "}
-      tsoobame.com {new Date().getFullYear()}
+      tonitienda {new Date().getFullYear()}
       {"."}
     </Typography>
   );
