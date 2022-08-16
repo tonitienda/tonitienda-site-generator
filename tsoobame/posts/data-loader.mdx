@@ -2,6 +2,8 @@
 title: Understanding data loader
 date: "2020-07-19"
 description: Create a basic dataloader to understand this great library
+thumbnailUrl: "/images/data-loader.jpeg"
+
 tags: ["javascript"]
 ---
 
@@ -15,7 +17,7 @@ I am going to set up a obvious naive example and follow the process to build a s
 
 We are going to create a view and api over a social network. Our users relations are:
 
-```
+```text
 User 1 friend of [ 2, 3 ]
 User 2 friend of [ 1, 3 ]
 User 3 friend of [ 1, 2, 4 ]
@@ -35,33 +37,31 @@ The only dependency will be express.
 
 The datasource allows us to retrieve one or multiple users by id. Contract is not random, it is already based on the real dataloader so there will be minimal changes over the course of the post. Data is defined in a file within the project. Code is pretty simple:
 
-<SyntaxHighlighter language="javascript">
-{`const users = require("./users.json");
+```javascript
+const users = require("./users.json");
 
 const getUsersFromFile = (ids) =>
-ids.map((id) => users.find((u) => u.id === id));
+  ids.map((id) => users.find((u) => u.id === id));
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function loadMany(ids) {
-console.log(\`GET /users?ids=\${ids}\`);
+  console.log(`GET /users?ids=${ids}`);
 
-await sleep(100);
-return getUsersFromFile(ids);
+  await sleep(100);
+  return getUsersFromFile(ids);
 }
 
 async function load(id) {
-const results = await loadMany([id]);
-return results[0];
+  const results = await loadMany([id]);
+  return results[0];
 }
 
 module.exports = {
-load,
-loadMany,
+  load,
+  loadMany,
 };
-`}
-
-</SyntaxHighlighter>
+```
 
 The only interesting method is loadMany. We will print the requests to the simulated service so we can check the console. There will be a delay to resolve the promise, so we can simulate better and understand why dataloader is so good.
 
@@ -138,7 +138,7 @@ app.listen(PORT, () => console.log(`Fakebook listening to ${PORT}`));
 
 ## Run
 
-```
+```shell
 node index.js
 ```
 
@@ -146,13 +146,13 @@ node index.js
 
 We will render friends of user 1. Only 1 level:
 
-```
+```text
 http://localhost:3000/user-with-friends/1
 ```
 
 If we check in our console we will find:
 
-```
+```text
 GET /users?ids=1
 GET /users?ids=2,3
 ```
@@ -163,13 +163,13 @@ All good. We requested user 1 and their friends 2 and 3.
 
 Let's try by loading 3 levels:
 
-```
+```text
 http://localhost:3000/user-with-friends/1?levels=3
 ```
 
 Things are getting interesting here:
 
-```
+```text
 GET /users?ids=1
 GET /users?ids=2,3
 GET /users?ids=1,3
@@ -242,11 +242,11 @@ const user = await resolver.getUserWithFriends(cache.make(datasource.loadMany), 
 
 Let's run again the server and test the previous request:
 
-```
+```text
 http://localhost:3000/user-with-friends/1?levels=3
 ```
 
-```
+```text
 GET /users?ids=1
 GET /users?ids=2,3
 GET /users?ids=4
@@ -258,7 +258,7 @@ We could reduce the number of requests from 9 to 5, which is pretty good. But, w
 
 If we unnest the request flow based on how nodejs works (and how we implemented our resolver) this is what happened:
 
-```
+```text
 1 - Load user 1 => GET /users?ids=1
 2 - Load friends of 1: [2,3]=> GET /users?ids=2,3
 3.1. Load friends of 2: [1,3] => all cached
@@ -283,7 +283,7 @@ There would be 2 requests before the cache has data for id=1.
 
 Let's fix this and produce the ideal:
 
-```
+```text
 GET /users?ids=1
 GET /users?ids=2,3
 GET /users?ids=4
@@ -296,7 +296,7 @@ Using nodejs `process.nextTick(...)` we can postpone the execution of a given fu
 
 From nodejs documentation:
 
-```
+```text
 By using process.nextTick() we guarantee that apiCall() always runs its callback after the rest of the user's code and before the event loop is allowed to proceed.
 ```
 
@@ -413,13 +413,13 @@ Let's run it!
 
 Again the same request:
 
-```
+```text
 http://localhost:3000/user-with-friends/1?levels=3
 ```
 
 That produces the following output:
 
-```
+```text
 GET /users?ids=1
 GET /users?ids=2,3
 GET /users?ids=4
