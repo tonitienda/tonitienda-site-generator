@@ -1,8 +1,13 @@
-name: deploy
+name: deploy tsoobame
 on:
   push:
     branch:
       - main
+    paths:
+      - "tsoobame/**"
+defaults:
+  run:
+    working-directory: tsoobame
 
 jobs:
   cancel-runs:
@@ -18,8 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Yarn Install
-        run: cd website && yarn
+        run: yarn
       - name: Build
-        run: cd website && yarn run build
+        run: yarn run build
       - name: Export
-        run: cd website && yarn run export
+        run: yarn run export
