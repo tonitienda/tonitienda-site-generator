@@ -28,3 +28,14 @@ jobs:
         run: yarn run build
       - name: Export
         run: yarn run export
+      - name: Push to tsoobame repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "../build"
+          destination-github-username: "tsoobame"
+          destination-repository-name: "tsoobame.github.io"
+          user-email: ${{ secrets.SSH_KEY_EMAIL }}
+          target-branch: main
