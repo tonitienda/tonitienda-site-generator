@@ -1,27 +1,27 @@
-import Head from "next/head";
-import Nav from "../components/Nav";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../components/theme";
+import { Paper } from "@mui/material";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Head>
-        <title>Next and MDX Blog</title>
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossOrigin="anonymous"
-        />
-
-        <link rel="stylesheet" href="/css/prism.okaidia.css" />
-        <script src="/scripts/prism.js" />
-      </Head>
-      <div className="container">
-        <Nav />
-        <main>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Paper
+          style={{
+            paddingTop: 100,
+            paddingBottom: 100,
+            width: "100%",
+            zIndex: -1,
+          }}
+        >
           <Component {...pageProps} />
-        </main>
-      </div>
+        </Paper>
+        <Footer />
+      </ThemeProvider>
     </>
   );
 }

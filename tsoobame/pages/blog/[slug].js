@@ -3,8 +3,7 @@ import { MDXRemote } from "next-mdx-remote";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import Button from "../../components/Button";
+import { Typography } from "@mui/material";
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync(path.join("posts"));
@@ -35,25 +34,23 @@ export const getStaticProps = async ({ params: { slug } }) => {
   };
 };
 
-const fakeH1 = (props) => <span>{props.children}</span>;
-const fakeH2 = (props) => <span>{props.children}</span>;
-const fakeH3 = (props) => <span>{props.children}</span>;
-
 const PostPage = ({ frontMatter: { title }, mdxSource }) => {
   return (
-    <div className="mt-4">
-      <h1>{title}</h1>
+    <>
       <MDXRemote
         {...mdxSource}
         components={{
-          h1: fakeH1,
-          h2: fakeH2,
-          h3: fakeH3,
-          Button,
-          SyntaxHighlighter,
+          h1: (props) => <Typography variant="h3" {...props} gutterBottom />,
+          h2: (props) => <Typography variant="h4" {...props} gutterBottom />,
+          h3: (props) => <Typography variant="h5" {...props} gutterBottom />,
+          h4: (props) => <Typography variant="h6" {...props} gutterBottom />,
+          h5: (props) => <Typography variant="h7" {...props} gutterBottom />,
+          h6: (props) => <Typography variant="h8" {...props} gutterBottom />,
+
+          p: (props) => <Typography variant="body1" {...props} gutterBottom />,
         }}
       />
-    </div>
+    </>
   );
 };
 
