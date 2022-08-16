@@ -35,8 +35,8 @@ export default function Home({ posts }) {
       alignItems="flex-start"
     >
       {posts.map((post, index) => (
-        <Grid item md={6}>
-          <PostCard post={{ ...post, ...post.frontMatter }} key={index} />
+        <Grid item md={6} key={index}>
+          <PostCard post={{ ...post, ...post.frontMatter }} />
         </Grid>
       ))}
     </Grid>

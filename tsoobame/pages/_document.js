@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           />
 
           <link rel="stylesheet" href="/css/prism.okaidia.css" />
-          <script src="/scripts/prism.js" />
+          <script src="/scripts/prism.js" async />
         </Head>
         <body>
           <Main />
