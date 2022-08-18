@@ -40,7 +40,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   };
 };
 
-const PostPage = ({ post }) => {
+const PostPage = ({ post, sidebar }) => {
   return (
     <Grid
       container

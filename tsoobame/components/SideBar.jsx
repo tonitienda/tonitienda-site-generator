@@ -4,7 +4,6 @@ import { useContext } from "react";
 import posts from "../posts";
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  console.log(slug);
   return {
     props: {
       slug,
@@ -21,9 +20,11 @@ const SideBar = ({ slug }) => {
       <ul style={{ listStyleType: "none" }}>
         {posts.map((p, index) => (
           <li key={index}>
-            <Link href={`/blog/${p.slug}`}>
-              <Typography variant="body1">{p.title}</Typography>
-            </Link>
+            <Typography variant="body1">
+              <Link href={`/blog/${p.slug}`} passHref>
+                {p.title}
+              </Link>
+            </Typography>
           </li>
         ))}
       </ul>
