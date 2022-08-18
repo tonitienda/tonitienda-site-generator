@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import Sidebar from "../../components/SideBar";
 import Grid from "@mui/material/Grid";
 import posts from "../../posts";
+import { useReadingTime } from "react-hook-reading-time";
 
 export const getStaticPaths = async () => {
   const paths = posts.map((post) => ({
@@ -22,25 +23,23 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const filePath = slug + ".mdx";
-  const markdownWithMeta = fs.readFileSync(
-    path.join("posts", filePath),
-    "utf-8"
-  );
+  const markdown = fs.readFileSync(path.join("posts", filePath), "utf-8");
   const post = posts.find((p) => p.filePath === filePath);
-  const { data: frontMatter, content } = matter(markdownWithMeta);
-  const mdxSource = await serialize(content);
+  const mdxSource = await serialize(markdown);
   return {
     props: {
       post: {
         ...post,
         slug,
         mdxSource,
+        markdown,
       },
     },
   };
 };
 
 const PostPage = ({ post, sidebar }) => {
+  const { text } = useReadingTime(post.markdown);
   return (
     <Grid
       container
@@ -52,6 +51,7 @@ const PostPage = ({ post, sidebar }) => {
         <Sidebar />
       </Grid>
       <Grid item md={9} style={{ padding: 6 }}>
+        <Typography variant="body1">⏱ {text}</Typography>
         <MDXRemote
           {...post.mdxSource}
           components={{
