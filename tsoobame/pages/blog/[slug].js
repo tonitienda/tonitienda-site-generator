@@ -6,12 +6,12 @@ import matter from "gray-matter";
 import { Typography } from "@mui/material";
 import Sidebar from "../../components/SideBar";
 import Grid from "@mui/material/Grid";
+import posts from "../../posts";
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync(path.join("posts"));
-  const paths = files.map((filename) => ({
+  const paths = posts.map((post) => ({
     params: {
-      slug: filename.replace(".mdx", ""),
+      slug: post.filePath.replace(".mdx", ""),
     },
   }));
   return {
@@ -21,22 +21,26 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
+  const filePath = slug + ".mdx";
   const markdownWithMeta = fs.readFileSync(
-    path.join("posts", slug + ".mdx"),
+    path.join("posts", filePath),
     "utf-8"
   );
+  const post = posts.find((p) => p.filePath === filePath);
   const { data: frontMatter, content } = matter(markdownWithMeta);
   const mdxSource = await serialize(content);
   return {
     props: {
-      frontMatter,
-      slug,
-      mdxSource,
+      post: {
+        ...post,
+        slug,
+        mdxSource,
+      },
     },
   };
 };
 
-const PostPage = ({ frontMatter: { title }, mdxSource }) => {
+const PostPage = ({ post }) => {
   return (
     <Grid
       container
@@ -49,7 +53,7 @@ const PostPage = ({ frontMatter: { title }, mdxSource }) => {
       </Grid>
       <Grid item md={9}>
         <MDXRemote
-          {...mdxSource}
+          {...post.mdxSource}
           components={{
             h1: (props) => <Typography variant="h3" {...props} gutterBottom />,
             h2: (props) => <Typography variant="h4" {...props} gutterBottom />,
