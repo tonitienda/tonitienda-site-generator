@@ -2,6 +2,10 @@ import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
 import { ServerStyleSheets } from "@mui/styles";
 import theme from "../components/theme";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import DataContext from "../components/DataContext";
 
 export default class MyDocument extends Document {
   render() {

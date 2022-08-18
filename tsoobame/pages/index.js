@@ -5,23 +5,19 @@ import matter from "gray-matter";
 import Link from "next/link";
 import PostCard from "../components/PostCard";
 import { Grid } from "@mui/material";
+import posts from "../posts";
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join("posts"));
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename),
-      "utf-8"
-    );
-    const { data: frontMatter } = matter(markdownWithMeta);
-    return {
-      frontMatter,
-      slug: filename.split(".")[0],
-    };
-  });
+  const postsWithMarkdown = posts.map((post) => ({
+    ...post,
+    slug: post.filePath.split(".")[0],
+
+    markdown: fs.readFileSync(path.join("posts", post.filePath), "utf-8"),
+  }));
+
   return {
     props: {
-      posts,
+      posts: postsWithMarkdown,
     },
   };
 };
@@ -36,7 +32,7 @@ export default function Home({ posts }) {
     >
       {posts.map((post, index) => (
         <Grid item md={6} key={index}>
-          <PostCard post={{ ...post, ...post.frontMatter }} />
+          <PostCard post={{ ...post }} />
         </Grid>
       ))}
     </Grid>
