@@ -10,8 +10,6 @@ import posts from "../posts";
 export const getStaticProps = async () => {
   const postsWithMarkdown = posts.map((post) => ({
     ...post,
-    slug: post.filePath.split(".")[0],
-
     markdown: fs.readFileSync(path.join("posts", post.filePath), "utf-8"),
   }));
 

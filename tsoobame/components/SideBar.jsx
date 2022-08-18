@@ -21,7 +21,7 @@ const SideBar = ({ slug }) => {
       <ul style={{ listStyleType: "none" }}>
         {posts.map((p, index) => (
           <li key={index}>
-            <Link href={p.filePath.split(".")[0]}>
+            <Link href={p.slug}>
               <Typography variant="body1">{p.title}</Typography>
             </Link>
           </li>
