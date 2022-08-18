@@ -21,7 +21,7 @@ const SideBar = ({ slug }) => {
       <ul style={{ listStyleType: "none" }}>
         {posts.map((p, index) => (
           <li key={index}>
-            <Link href={p.slug}>
+            <Link href={`/blog/${p.slug}`}>
               <Typography variant="body1">{p.title}</Typography>
             </Link>
           </li>
