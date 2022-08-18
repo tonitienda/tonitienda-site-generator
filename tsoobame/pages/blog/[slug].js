@@ -48,10 +48,10 @@ const PostPage = ({ post }) => {
       justifyContent="flex-start"
       alignItems="flex-start"
     >
-      <Grid item md={3}>
+      <Grid item md={3} style={{ padding: 6 }}>
         <Sidebar />
       </Grid>
-      <Grid item md={9}>
+      <Grid item md={9} style={{ padding: 6 }}>
         <MDXRemote
           {...post.mdxSource}
           components={{
