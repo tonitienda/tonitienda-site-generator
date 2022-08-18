@@ -2,9 +2,14 @@ import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
 import { ServerStyleSheets } from "@mui/styles";
 import theme from "../components/theme";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import DataContext from "../components/DataContext";
 
 export default class MyDocument extends Document {
   render() {
+    console.log(this.props.data);
     return (
       <Html lang="en">
         <Head>
@@ -22,13 +27,40 @@ export default class MyDocument extends Document {
           <script src="/scripts/prism.js" async />
         </Head>
         <body>
-          <Main />
+          <DataContext.Provider value={this.props.data}>
+            <Main />
+          </DataContext.Provider>
           <NextScript />
         </body>
       </Html>
     );
   }
 }
+
+const getPosts = async () => {
+  const files = fs.readdirSync(path.join("posts"));
+  const posts = files.map((filename) => {
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts", filename),
+      "utf-8"
+    );
+    const { data: frontMatter } = matter(markdownWithMeta);
+    return {
+      frontMatter,
+      slug: filename.split(".")[0],
+    };
+  });
+  return posts;
+};
+
+MyDocument.getStaticProps = async (ctx) => {
+  const posts = await getPosts();
+  return {
+    data: {
+      posts,
+    },
+  };
+};
 
 MyDocument.getInitialProps = async (ctx) => {
   // Resolution order

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../components/theme";
 import { Paper } from "@mui/material";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, posts }) {
   return (
     <>
       <ThemeProvider theme={theme}>
