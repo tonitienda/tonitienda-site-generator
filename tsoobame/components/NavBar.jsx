@@ -10,6 +10,7 @@ const pages = [
   },
   { title: "About", url: "/about" },
   { title: "Projects", url: "/projects" },
+  { title: "References", url: "/references" },
 ];
 
 const ResponsiveAppBar = () => {
