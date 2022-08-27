@@ -4,16 +4,24 @@ import Footer from "../components/Footer";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../components/theme";
 import { Paper } from "@mui/material";
+import createEmotionCache from "../src/createEmotionCache";
+import { CacheProvider } from "@emotion/react";
 
-function MyApp({ Component, pageProps }) {
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}) {
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <Header />
         <Paper
           style={{
-            paddingTop: 0,
-            paddingBottom: 0,
+            padding: 0,
+            paddingTop: 100,
             width: "100%",
             zIndex: -1,
           }}
@@ -22,7 +30,7 @@ function MyApp({ Component, pageProps }) {
         </Paper>
         <Footer />
       </ThemeProvider>
-    </>
+    </CacheProvider>
   );
 }
 
