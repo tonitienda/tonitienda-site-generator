@@ -2,6 +2,7 @@ import React from "react";
 import { Typography, Toolbar, AppBar } from "@mui/material";
 import Link from "./Link";
 import { createStyles, makeStyles } from "@mui/styles";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -44,10 +45,11 @@ const Header = () => {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Link color="inherit" href="/">
+          <Link color="inherit" href="/" style={{ textDecoration: "none" }}>
             tsoobame
           </Link>
         </Typography>
+        <NavBar />
       </Toolbar>
     </AppBar>
   );
