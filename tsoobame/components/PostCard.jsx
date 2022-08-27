@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import { CardHeader } from "@mui/material";
 
 export default function PostCard({ post }) {
   return (
@@ -16,10 +17,8 @@ export default function PostCard({ post }) {
         height="140"
         image={post.thumbnailUrl}
       />
+      <CardHeader title={post.title}></CardHeader>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {post.title}
-        </Typography>
         <Typography variant="body2" color="text.secondary">
           {post.description}
         </Typography>

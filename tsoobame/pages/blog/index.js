@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import PostCard from "../components/PostCard";
+import PostCard from "../../components/PostCard";
 import { Grid } from "@mui/material";
-import posts from "../posts";
+import posts from "../../posts";
 
 export const getStaticProps = async () => {
   const postsWithMarkdown = posts.map((post) => ({
