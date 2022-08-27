@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Projects = () => (
   <Grid container alignItems="space-between" alignContent="space-between">
-    <Grid item md={4}>
+    <Grid item md={4} style={{ margin: 6 }}>
       <Card>
         <CardHeader title="Cinc Estrelles"></CardHeader>
         <CardContent>
