@@ -1,14 +1,11 @@
 import {
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   Grid,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 
 const References = () => (
   <Box>
