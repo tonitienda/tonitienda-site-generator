@@ -5,15 +5,15 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../components/theme";
 import { Paper } from "@mui/material";
 
-function MyApp({ Component, pageProps, posts }) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider theme={theme}>
         <Header />
         <Paper
           style={{
-            paddingTop: 100,
-            paddingBottom: 100,
+            paddingTop: 0,
+            paddingBottom: 0,
             width: "100%",
             zIndex: -1,
           }}

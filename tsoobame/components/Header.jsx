@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) =>
 const Header = () => {
   const classes = useStyles();
   return (
-    <AppBar position="static" className={classes.appBar}>
+    <AppBar position="static" className={classes.appBar} style={{ padding: 0 }}>
       <Toolbar className={classes.toolbar}>
         <Typography
           component="h2"
