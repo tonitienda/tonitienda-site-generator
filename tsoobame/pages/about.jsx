@@ -12,7 +12,7 @@ const About = () => (
       <Typography variant="h5">LinkedIn</Typography>
 
       <div
-        class="badge-base LI-profile-badge"
+        className="badge-base LI-profile-badge"
         data-locale="en_US"
         data-size="medium"
         data-theme="light"
