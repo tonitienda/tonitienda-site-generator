@@ -1,8 +1,8 @@
 {
-  "title": "Graphql Schema Stitching",
-  "date": "2019-04-26",
-  "description": "What Graphql schema stitching is and how it can help us",
+  "title": "Event schema aproaches for loosely coupled components in EDA",
+  "date": "2022-08-26",
+  "description": "How to make our components more loosely coupled via stable event schemas",
   "thumbnailUrl": "/images/graphql-schema-stitching.jpeg",
-  "tags": ["javascript", "graphql", "api"],
-  "filePath": "graphql-schema-stitching.mdx"
+  "tags": ["eda", "schemas", "events", "components"],
+  "filePath": "loosely-coupled-components-eda.mdx"
 }

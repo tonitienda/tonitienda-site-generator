@@ -1,0 +1,8 @@
+{
+  "title": "Graphql Schema Stitching",
+  "date": "2019-04-26",
+  "description": "What Graphql schema stitching is and how it can help us",
+  "thumbnailUrl": "/images/graphql-schema-stitching.jpeg",
+  "tags": ["javascript", "graphql", "api"],
+  "filePath": "graphql-schema-stitching.mdx"
+}

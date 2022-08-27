@@ -1,0 +1,73 @@
+# Loosely coupled components with EDA
+
+<span style="color: red; font-weight: bold">
+  TODO: see if the title should be "Highly coupled components with EDA" since
+  EDA might sound like a silver bullet to decouple components
+</span>
+
+## About coupling
+
+Before understanding how to decouple components we need to understand what coupling is.
+All engineers have an image about coupling but I will try to explain here my image so we can start from
+the same stand point.
+
+Maybe the discussion about coupling needs its own post or even a book, but here I will try to set a baseline
+for the rest of this post.
+
+This post is focused on coupling mainly in distributed systems. I could not find a list of types of coupling
+for distribured systems, so I created my own.
+
+Feel free to contact me if it makes no sense of there is a resource I can refer to.
+
+### Types of coupling
+
+<span style="color: red; font-weight: bold">See references</span>
+There are several types of coupling:
+
+#### Runtime coupling
+
+A component needs to be implemented in the same language/technology as the other component.
+Although it does not sound like related to distributed systems, there was a time when objects where
+shared directly by distributed components (see CORBA).
+
+<span style="color: red; font-weight: bold">A bit more detail</span>
+</span>
+
+#### Deployment coupling
+
+A component needs to be deployed together with another component.
+
+<span style="color: red; font-weight: bold">
+  A bit more detail: components released in Sidecar for example
+</span>
+
+#### Temporal coupling
+
+A component needs another component to be "alive" at least during an operation.
+For example, any component that invokes another component and needs a response back in order
+to continue the operation.
+
+This can happen when using HTTP APIs but also using message brokers. As soon as the caller needs to required a response
+there is some temporal coupling.
+
+#### Data format / Schema coupling
+
+A component needs to know the data schema of another component to perform its operations.
+This one is almost unavoidable. If a component needs to communicate to another it will need to know what
+is the expected format of the data to be sent or the data being received.
+
+For example a component invokes another via http request or a component subscribed to events from another.
+
+#### Semantic coupling
+
+A component needs to understand the semantics of the data of another component in order to perform an operation.
+For example when a component invokes another to perform an operation, apart from the schema, it needs to understand
+what the operation means.
+When a component subscribes to an event it needs to understand what the event means. Not only what the payload contains.
+
+## NOTES for the post:
+
+Think of entities managed by multiple services
+Product.pricing => Pricing team
+Product.contents => Contents team
+Product.inventory => Inventory team
