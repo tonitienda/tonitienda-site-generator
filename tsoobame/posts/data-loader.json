@@ -2,7 +2,13 @@
   "title": "Understanding data loader",
   "date": "2020-07-19",
   "description": "Create a basic dataloader to understand this great library",
-  "thumbnailUrl": "/images/data-loader.jpeg",
+  "thumbnail": {
+    "url": "/images/data-loader.jpeg",
+    "attribution": {
+      "name": "Lars Kienle",
+      "url": "https://unsplash.com/@larskienle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+    }
+  },
   "tags": ["javascript"],
   "filePath": "data-loader.mdx"
 }

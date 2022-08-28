@@ -22,7 +22,9 @@ const SideBar = ({ slug }) => {
           <li key={index}>
             <Typography variant="body1">
               <Link href={`/blog/${p.slug}`} passHref>
-                {p.title}
+                <a style={{ textDecoration: "none", color: "gray" }}>
+                  {p.title}
+                </a>
               </Link>
             </Typography>
           </li>

@@ -8,6 +8,7 @@ import Sidebar from "../../components/SideBar";
 import Grid from "@mui/material/Grid";
 import posts from "../../posts";
 import { useReadingTime } from "react-hook-reading-time";
+import Image from "next/image";
 
 export const getStaticPaths = async () => {
   const paths = posts.map((post) => ({
@@ -51,19 +52,82 @@ const PostPage = ({ post, sidebar }) => {
         <Sidebar />
       </Grid>
       <Grid item md={9} style={{ padding: 6 }}>
+        <img
+          src={post.thumbnail.url}
+          style={{
+            with: "100%",
+            height: 200,
+            objectFit: "cover",
+          }}
+          width="100%"
+          height="200"
+        />
         <Typography variant="body1">⏱ {text}</Typography>
         <MDXRemote
           {...post.mdxSource}
           components={{
-            h1: (props) => <Typography variant="h3" {...props} gutterBottom />,
-            h2: (props) => <Typography variant="h4" {...props} gutterBottom />,
-            h3: (props) => <Typography variant="h5" {...props} gutterBottom />,
-            h4: (props) => <Typography variant="h6" {...props} gutterBottom />,
-            h5: (props) => <Typography variant="h7" {...props} gutterBottom />,
-            h6: (props) => <Typography variant="h8" {...props} gutterBottom />,
+            h1: (props) => (
+              <Typography
+                variant="h3"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
+            h2: (props) => (
+              <Typography
+                variant="h4"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
+            h3: (props) => (
+              <Typography
+                variant="h5"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
+            h4: (props) => (
+              <Typography
+                variant="h6"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
+            h5: (props) => (
+              <Typography
+                variant="h7"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
+            h6: (props) => (
+              <Typography
+                variant="h8"
+                {...props}
+                gutterBottom
+                style={{ marginTop: 24 }}
+              />
+            ),
 
-            p: (props) => (
-              <Typography variant="body1" {...props} gutterBottom />
+            p: (props) => <Typography variant="body1" {...props} />,
+            Quote: (props) => (
+              <Typography
+                style={{
+                  paddingLeft: 24,
+                  fontSize: "1.2em",
+                  margin: 24,
+                  color: "#33%",
+                  fontStyle: "italic",
+                }}
+              >
+                {props.children}
+              </Typography>
             ),
           }}
         />
