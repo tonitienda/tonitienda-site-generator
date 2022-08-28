@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
-import PostCard from "../../components/PostCard";
-import { Grid } from "@mui/material";
 import posts from "../../posts";
+import PostGrid from "../../components/PostGrid";
 
 export const getStaticProps = async () => {
   const postsWithMarkdown = posts.map((post) => ({
@@ -17,14 +16,6 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({ posts }) {
-  return (
-    <Grid container direction="row">
-      {posts.map((post, index) => (
-        <Grid item key={index} style={{ margin: 6 }}>
-          <PostCard post={{ ...post }} />
-        </Grid>
-      ))}
-    </Grid>
-  );
+export default function Posts({ posts }) {
+  return <PostGrid posts={posts} />;
 }

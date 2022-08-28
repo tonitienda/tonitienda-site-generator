@@ -2,7 +2,13 @@
   "title": "Graphql Schema Stitching",
   "date": "2019-04-26",
   "description": "What Graphql schema stitching is and how it can help us",
-  "thumbnailUrl": "/images/graphql-schema-stitching.jpeg",
+  "thumbnail": {
+    "url": "/images/graphql-schema-stitching.jpeg",
+    "attribution": {
+      "name": "Aneta Pawlik",
+      "url": "https://unsplash.com/@anetakpawlik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+    }
+  },
   "tags": ["javascript", "graphql", "api"],
   "filePath": "graphql-schema-stitching.mdx"
 }

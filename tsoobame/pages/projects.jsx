@@ -30,6 +30,7 @@ const Projects = () => (
           <Link
             href={"https://github.com/tonitienda/cinc-estrelles"}
             target="_blank"
+            rel="noreferrer"
           >
             <Button size="small">Visit</Button>
           </Link>

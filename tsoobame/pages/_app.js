@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
         style={{
           padding: 0,
           paddingTop: 100,
+          paddingBottom: 100,
           width: "100%",
           zIndex: -1,
         }}
