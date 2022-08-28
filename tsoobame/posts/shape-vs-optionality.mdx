@@ -56,10 +56,11 @@ There are two entities that somehow are too closely related.
 This lead to some problems:
 
 ```text
-- Entity proliferation. We have all been in projects with too many entities that seem to describe almost the same thing.
-- Change management: New fields in Posts will require new fields in Drafts almost always.
-- Event ambiguity: If we use EDA or similar, are Drafts / Posts events sent to the same topic? are they really different?
+- ⛔ Entity proliferation. We have all been in projects with too many entities that seem to describe almost the same thing.
+- ⛔ Change management: New fields in Posts will require new fields in Drafts almost always.
+- ⛔ Event ambiguity: If we use EDA or similar, are Drafts / Posts events sent to the same topic? are they really different?
   how can we see the history of a Post if it starts as a Draft?
+- ✅ DB leverage: we can use DB schemas to control whether the data being stored is correct or not.
 - ...
 ```
 
@@ -114,9 +115,10 @@ There is only one entity that goes through different states until it is publishe
 The benefits are:
 
 ```text
-- Entity proliferation: so far under control.
-- Change management: there is only one entity we need to think about.
-- Event unambiguity: all events belong to the same entity so we have one topic and one history line.
+- ✅ Entity proliferation: so far under control.
+- ✅ Change management: there is only one entity we need to think about.
+- ✅ Event unambiguity: all events belong to the same entity so we have one topic and one history line.
+- ⛔ DB leverage: DB Schema cannot be leveraged to control required fields/columns. The control is in the application layer.
 ```
 
 ## Appendix
