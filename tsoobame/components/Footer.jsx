@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 0),
     width: "100%",
     zIndex: 99,
-    position: "fixed",
+    position: "relative",
     bottom: 0,
   },
 }));
