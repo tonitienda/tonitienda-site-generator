@@ -1,3 +1,4 @@
+import Head from "next/head";
 import PostGrid from "../../../components/PostGrid";
 import posts from "../../../posts";
 
@@ -20,10 +21,18 @@ export const getStaticProps = async ({ params: { tag } }) => {
   return {
     props: {
       posts: posts.filter((p) => p.tags.some((t) => t === tag)),
+      tag,
     },
   };
 };
 
-export default function PostTag({ posts }) {
-  return <PostGrid posts={posts} />;
+export default function PostTag({ posts, tag }) {
+  return (
+    <>
+      <Head>
+        <title>Tsoobame - Tags: {tag} </title>
+      </Head>
+      <PostGrid posts={posts} />
+    </>
+  );
 }
