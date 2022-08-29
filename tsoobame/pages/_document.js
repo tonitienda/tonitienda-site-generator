@@ -5,7 +5,7 @@ import { ServerStyleSheets } from "@mui/styles";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" style={{ height: "100%" }}>
         <Head>
           <title>Tsoobame</title>
 
@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
             }}
           />
         </Head>
-        <body style={{ padding: 0, margin: 0 }}>
+        <body style={{ padding: 0, margin: 0, minHeight: "100%" }}>
           <Main />
           <NextScript />
         </body>

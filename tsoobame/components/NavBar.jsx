@@ -16,9 +16,9 @@ const pages = [
 const ResponsiveAppBar = () => {
   return (
     <>
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+      <Box sx={{ flexGrow: 1 }}>
         {pages.map((page) => (
-          <Button key={page} sx={{ my: 2, color: "white", display: "block" }}>
+          <Button key={page} sx={{ color: "white" }}>
             <Link
               key={page.url}
               href={page.url}
