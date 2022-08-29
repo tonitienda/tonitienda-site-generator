@@ -22,7 +22,7 @@ const Attribution = ({ attribution }) => (
 
 export default function PostCard({ post }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardMedia
         component="img"
         alt={post.title}

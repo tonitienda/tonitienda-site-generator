@@ -3,23 +3,25 @@ import Footer from "../components/Footer";
 
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../components/theme";
-import { Paper } from "@mui/material";
+import { Box } from "@mui/material";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Paper
+      <Box
         style={{
-          padding: 0,
-          paddingTop: 100,
-          paddingBottom: 100,
-          width: "100%",
-          zIndex: -1,
+          position: "relative",
+          width: "90%",
+          paddingLeft: 24,
+          paddingRight: 24,
+          marginTop: 80,
+          marginBottom: 90,
+          zIndex: 2,
         }}
       >
-        <Component {...pageProps} />
-      </Paper>
+        <Component {...pageProps}></Component>
+      </Box>
       <Footer />
     </ThemeProvider>
   );

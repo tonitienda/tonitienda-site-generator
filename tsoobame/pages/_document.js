@@ -7,6 +7,11 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+
           {this.props.emotionStyleTags}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
@@ -26,7 +31,7 @@ export default class MyDocument extends Document {
             }}
           />
         </Head>
-        <body>
+        <body style={{ padding: 0, margin: 0 }}>
           <Main />
           <NextScript />
         </body>

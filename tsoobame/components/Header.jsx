@@ -7,19 +7,9 @@ import NavBar from "./NavBar";
 const useStyles = makeStyles((theme) =>
   createStyles({
     toolbar: {
-      borderBottom: `1px solid`,
       background: `linear-gradient(90deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
-      top: 0,
-      left: 0,
-      width: "100%",
-      position: "fixed",
     },
-    toolbarTitle: {
-      flex: 1,
-      a: {
-        textDecoration: "none",
-      },
-    },
+    toolbarTitle: {},
     toolbarSecondary: {
       justifyContent: "space-between",
       overflowX: "auto",
@@ -28,7 +18,14 @@ const useStyles = makeStyles((theme) =>
       padding: theme.spacing(1),
       flexShrink: 0,
     },
-    appBar: {},
+    appBar: {
+      width: "100%",
+      top: 0,
+      left: 0,
+      right: 0,
+      position: "fixed",
+      zIndex: 99,
+    },
   })
 );
 
