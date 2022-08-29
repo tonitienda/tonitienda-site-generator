@@ -6,15 +6,16 @@ Defining a schema for a given entity we tend to define what attributes this enti
 each of those attributes have and what attributes are required or optional.
 
 In this post I am exposing that the shape of the data (attributes and their types) need to be discussed separately
-from their optionality. If we discuss and define them together we are complecting two concepts that should we separately
-them the simplicity, clarity and reusability of our system will be greatly improved.
+from their optionality. The optionality does not belong to the entity but to the operation being executed.
+If we discuss and define both concepts together as part of the Entity we are complecting two concepts that should we separate
+them, the simplicity, clarity and reusability of our system will be greatly improved.
 
 ## Introduction
 
 Apart from my own experience some of the concepts described in this post are also described by well-known
 engineers like Rich Hickey in [Maybe Not](https://www.youtube.com/watch?v=YR5WdGrpoug) available in my [recommended resources](/recommended-resources)
 
-I will use a Blog Post as the example for the model but again, this applied to any entity we can think of.
+I will use a Blog Post as the example for the model but the concepts in this post can be applied to any entity and discussion we can think of.
 
 ## Defining a blog Post
 
@@ -55,14 +56,11 @@ posts where all columns are required.
 There are two entities that somehow are too closely related.
 This lead to some problems:
 
-```text
 - ⛔ Entity proliferation. We have all been in projects with too many entities that seem to describe almost the same thing.
 - ⛔ Change management: New fields in Posts will require new fields in Drafts almost always.
 - ⛔ Event ambiguity: If we use EDA or similar, are Drafts / Posts events sent to the same topic? are they really different?
   how can we see the history of a Post if it starts as a Draft?
 - ✅ DB leverage: we can use DB schemas to control whether the data being stored is correct or not.
-- ...
-```
 
 ## Rolling back
 
@@ -84,19 +82,15 @@ The answer to this question should have been another question:
 What are the operations we can do for/on Posts?
 Let's say that we can do 3 operations with Posts:
 
-```
 - Save the post
 - Publish the post
 - Unpublish the post
 - Delete the post
-```
 
 Rules are:
 
-```
 - We cannot edit a post if it is published
 - We cannot delete a post if it is published
-```
 
 Optionality has to do with the operation we want to perform on/with a given Envity.
 For example, asking:
@@ -114,12 +108,10 @@ We can let users save the posts in whatever state they are (missing tags, missin
 There is only one entity that goes through different states until it is published.
 The benefits are:
 
-```text
 - ✅ Entity proliferation: so far under control.
 - ✅ Change management: there is only one entity we need to think about.
 - ✅ Event unambiguity: all events belong to the same entity so we have one topic and one history line.
 - ⛔ DB leverage: DB Schema cannot be leveraged to control required fields/columns. The control is in the application layer.
-```
 
 ## Appendix
 

@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(90deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
     color: theme.palette.background.paper,
     padding: theme.spacing(2, 0),
-    bottom: 0,
-    left: 0,
     width: "100%",
-    position: "fixed",
+    zIndex: 99,
+    position: "relative",
+    bottom: 0,
   },
 }));
 
