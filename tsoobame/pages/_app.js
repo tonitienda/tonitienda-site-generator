@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
           paddingLeft: 24,
           paddingRight: 24,
           marginTop: 80,
-          marginBottom: 90,
+          paddingBottom: 90,
           zIndex: 0,
           minHeight: "100%",
         }}
