@@ -7,6 +7,7 @@ import Sidebar from "../../components/SideBar";
 import Grid from "@mui/material/Grid";
 import posts from "../../posts";
 import { useReadingTime } from "react-hook-reading-time";
+import Head from "next/head";
 
 export const getStaticPaths = async () => {
   const paths = posts.map((post) => ({
@@ -46,6 +47,9 @@ const PostPage = ({ post }) => {
         padding: 12,
       }}
     >
+      <Head>
+        <title>Tsoobame - {post.title}</title>
+      </Head>
       <Grid
         container
         direction="row"
