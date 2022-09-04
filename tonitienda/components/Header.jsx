@@ -43,7 +43,7 @@ const Header = () => {
           className={classes.toolbarTitle}
         >
           <Link color="inherit" href="/" style={{ textDecoration: "none" }}>
-            tsoobame
+            toni tienda
           </Link>
         </Typography>
         <NavBar />

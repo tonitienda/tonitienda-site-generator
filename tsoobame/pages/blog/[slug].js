@@ -1,5 +1,8 @@
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
+import mermaidPlugin from "mdx-mermaid";
+import { Mermaid } from "mdx-mermaid/Mermaid";
+
 import fs from "fs";
 import path from "path";
 import { Box, Typography } from "@mui/material";
@@ -25,7 +28,9 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const filePath = slug + ".mdx";
   const markdown = fs.readFileSync(path.join("posts", filePath), "utf-8");
   const post = posts.find((p) => p.filePath === filePath);
-  const mdxSource = await serialize(markdown);
+  const mdxSource = await serialize(markdown, {
+    mdxOptions: { remarkPlugins: [mermaidPlugin] },
+  });
   return {
     props: {
       post: {
@@ -158,6 +163,7 @@ const PostPage = ({ post }) => {
                     {props.children}
                   </Typography>
                 ),
+                Mermaid,
               }}
             />
           </Box>

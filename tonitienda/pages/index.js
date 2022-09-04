@@ -24,7 +24,7 @@ export default function Home({ kyudoPosts }) {
   return (
     <>
       <Typography variant="h5">Kyudo</Typography>
-      <PostGrid posts={kyudoPosts} />
+      <PostGrid posts={kyudoPosts} category="kyudo" />
     </>
   );
 }

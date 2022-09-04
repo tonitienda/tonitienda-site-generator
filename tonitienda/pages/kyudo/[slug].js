@@ -52,7 +52,7 @@ const PostPage = ({ post }) => {
       }}
     >
       <Head>
-        <title>Tsoobame - {post.title}</title>
+        <title>Toni Tienda - {post.title}</title>
       </Head>
       <Grid
         container

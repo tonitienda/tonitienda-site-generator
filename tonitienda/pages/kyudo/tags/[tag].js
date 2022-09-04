@@ -1,9 +1,9 @@
 import Head from "next/head";
 import PostGrid from "../../../components/PostGrid";
-import posts from "../../../posts";
+import kyudoPosts from "../../../kyudo/posts";
 
 export const getStaticPaths = async () => {
-  const paths = posts
+  const paths = kyudoPosts
     .flatMap((post) => post.tags)
     .filter((tag, index, self) => self.indexOf(tag) === index)
     .map((tag) => ({
@@ -20,19 +20,19 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { tag } }) => {
   return {
     props: {
-      posts: posts.filter((p) => p.tags.some((t) => t === tag)),
+      kyudoPosts: kyudoPosts.filter((p) => p.tags.some((t) => t === tag)),
       tag,
     },
   };
 };
 
-export default function PostTag({ posts, tag }) {
+export default function PostTag({ kyudoPosts, tag }) {
   return (
     <>
       <Head>
-        <title>Tsoobame - Tags: {tag} </title>
+        <title>Kyudo- Tags: {tag} </title>
       </Head>
-      <PostGrid posts={posts} />
+      <PostGrid posts={kyudoPosts} category="kyudo" />
     </>
   );
 }

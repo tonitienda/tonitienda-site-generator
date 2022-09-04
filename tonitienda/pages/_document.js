@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en" style={{ height: "100%" }}>
         <Head>
-          <title>Tsoobame</title>
+          <title>Toni Tienda</title>
 
           <meta
             name="viewport"

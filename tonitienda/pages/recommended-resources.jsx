@@ -11,14 +11,12 @@ import Head from "next/head";
 const References = () => (
   <>
     <Head>
-      <title>Tsoobame - Recommended resources </title>
+      <title>Toni Tienda - Recursos recomendados </title>
     </Head>
 
     <Box>
-      <Typography variant="h5">
-        These are some of the videos I would recommend watching:
-      </Typography>
-      <Grid container alignItems="space-between" alignContent="space-between">
+      <Typography variant="h5">Algunos videos que me gusta ver:</Typography>
+      {/* <Grid container alignItems="space-between" alignContent="space-between">
         <Grid item md={3} style={{ margin: 6 }}>
           <Card>
             <CardHeader title="Rich Hickey - Maybe not"></CardHeader>
@@ -73,7 +71,7 @@ const References = () => (
             </CardContent>
           </Card>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Box>
   </>
 );
