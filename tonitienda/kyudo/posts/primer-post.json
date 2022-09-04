@@ -1,0 +1,14 @@
+{
+  "title": "Primer post",
+  "date": "2022-09-04",
+  "description": "Por que escribir sobre Kyudo?",
+  "thumbnail": {
+    "url": "/images/kyudo/primer-post.jpeg",
+    "attribution": {
+      "name": "Adrian Trinkaus",
+      "url": "https://unsplash.com/@adrian_trinkaus"
+    }
+  },
+  "tags": ["kyudo"],
+  "filePath": "primer-post.mdx"
+}
