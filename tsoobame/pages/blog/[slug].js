@@ -2,6 +2,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import mermaidPlugin from "mdx-mermaid";
 import { Mermaid } from "mdx-mermaid/Mermaid";
+import Image from "next/image";
 
 import fs from "fs";
 import path from "path";
@@ -164,6 +165,7 @@ const PostPage = ({ post }) => {
                   </Typography>
                 ),
                 Mermaid,
+                img: Image,
               }}
             />
           </Box>
