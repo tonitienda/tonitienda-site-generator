@@ -165,7 +165,6 @@ const PostPage = ({ post }) => {
                   </Typography>
                 ),
                 Mermaid,
-                img: Image,
               }}
             />
           </Box>
