@@ -1,0 +1,14 @@
+{
+  "title": "Function call cascading considered harmful",
+  "date": "2023-05-24",
+  "description": "Function call cascading hits the composability, testability and reusability of software components and should be avoided in preference for sequential and explicit function calling.",
+  "thumbnail": {
+    "url": "/images/function-call-cascading.jpeg",
+    "attribution": {
+      "name": "Sarah Doffman",
+      "url": "https://unsplash.com/@sarahdoffman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+    }
+  },
+  "tags": ["software", "anti-patterns", "composition"],
+  "filePath": "function-call-cascading.mdx"
+}
