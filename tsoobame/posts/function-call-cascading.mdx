@@ -9,7 +9,7 @@ This is one of those cases. I prefer writing code that reads like recipes and I 
 as something that will be used by multiple clients even if it not the case yet. But I thought that was my style
 and that sometimes made things more complex (in the sense of more moving parts) that there should be.
 
-Recently, during a refactor I notice one of these situations where the code had a different style and I found it
+Recently, during a refactor I noticed one of these situations where the code had a different style and I found it
 more difficult to reason about, test and reuse. But I still could not find a term or a clear and general rationale
 about why I felt that way.
 
@@ -20,25 +20,237 @@ I will illustrate the problem with an example, so things are more clear and, hop
 
 ## The problem
 
-// TODO - Think of an actual-ish example
-We need to implement a REST endpoint that receives a JSON body and we need to:
+Consider a web application that processes user registrations. When a new user signs up, various tasks need to be performed, such as validating the user's data, creating a user account, sending a confirmation email, and logging the registration event.
 
-- Validate the data
-- Get data from the DB in order to make sure that the operation is valid.
-- Enrich the data by sending a request to another API.
-- Store the data in the DB
-- Return the ID to the Client
+### Function call cascading
+
+One way of implementing this functionality using function call cascading:
 
 ```mermaid
 
   sequenceDiagram
 
   actor Client
-  participant Http
-  participant Controller
-  participant Service
-  participant Repository
-  actor ExternalAPI
-  actor DB
+  participant registerUser
+  participant validateUser
+  participant createUser
+  participant sendConfirmationEmail
+  participant logRegistration
 
+  registerUser ->> validateUser: userData
+  validateUser ->> createUser: userData
+  createUser ->> sendConfirmationEmail: userData
+  sendConfirmationEmail ->> logRegistration: userData
 ```
+
+```javascript
+function registerUser(userData) {
+  validateUser(userData);
+}
+
+function validateUser(userData) {
+  if (userData.username && userData.email && userData.password) {
+    createUser(userData);
+  } else {
+    console.log("Invalid user data.");
+  }
+}
+
+function createUser(userData) {
+  // Logic to create a user account
+
+  sendConfirmationEmail(userData);
+}
+
+function sendConfirmationEmail(userData) {
+  // Logic to send a confirmation email
+
+  logRegistration(userData);
+}
+
+function logRegistration(userData) {
+  // Logic to log the registration event
+
+  console.log("User registration completed.");
+}
+```
+
+Although this example with simplified code might seem strange and obvious, we often use this pattern and make functions call
+the next function in the sequence.
+
+### Recipe - Composition
+
+The other way is using a recipe-like expression:
+
+```mermaid
+
+  sequenceDiagram
+
+  actor Client
+  participant registerUser
+  participant validateUser
+  participant createUser
+  participant sendConfirmationEmail
+  participant logRegistration
+
+  registerUser ->> validateUser: userData
+  registerUser ->> createUser: userData
+  registerUser ->> sendConfirmationEmail: userData
+  registerUser ->> logRegistration: userData
+```
+
+```javascript
+function registerUser(userData) {
+  if (validateUser(userData)) {
+    createUser(userData);
+    sendConfirmationEmail(userData);
+    logRegistration(userData);
+    console.log("User registration completed.");
+  } else {
+    console.log("Invalid user data.");
+  }
+}
+
+function validateUser(userData) {
+  return userData.username && userData.email && userData.password;
+}
+
+function createUser(userData) {
+  // Logic to create a user account
+}
+
+function sendConfirmationEmail(userData) {
+  // Logic to send a confirmation email
+}
+
+function logRegistration(userData) {
+  // Logic to log the registration event
+}
+```
+
+## Analysis
+
+### Goal coupling
+
+When using function call cascading, all functions are coupled to the goal of the functions that
+are called down the line.
+
+For example, if registerUser has the goals:
+
+- validate user
+- create user
+- send confirmation email
+- log registration
+
+`validateUser` will **inherit** the same goals. `createUser` will inherit all goals except validate user, etc.
+
+```mermaid
+
+flowchart LR
+
+subgraph Functions
+  registerUser
+  validateUser
+  createUser
+  sendConfirmationEmail
+  logRegistration
+end
+
+subgraph Goals
+  validate-user[validate user]
+  create-user[create user]
+  send-confirmation-email[send confirmation email]
+  log-registration[log registration]
+end
+
+registerUser --> validateUser
+registerUser -.- validate-user
+registerUser -.- create-user
+registerUser -.- send-confirmation-email
+registerUser -.- log-registration
+
+
+validateUser --> createUser
+validateUser -.->validate-user
+validateUser -.- create-user
+validateUser -.- send-confirmation-email
+validateUser -.- log-registration
+
+
+createUser --> sendConfirmationEmail
+createUser -.->create-user
+createUser -.- send-confirmation-email
+createUser -.- log-registration
+
+
+sendConfirmationEmail --> logRegistration
+sendConfirmationEmail -.->send-confirmation-email
+sendConfirmationEmail -.- log-registration
+
+
+logRegistration -.->log-registration
+```
+
+```mermaid
+
+flowchart LR
+
+subgraph Functions
+  registerUser
+  validateUser
+  createUser
+  sendConfirmationEmail
+  logRegistration
+end
+
+subgraph Goals
+  validate-user[validate user]
+  create-user[create user]
+  send-confirmation-email[send confirmation email]
+  log-registration[log registration]
+end
+
+registerUser --> validateUser
+registerUser --> createUser
+registerUser --> sendConfirmationEmail
+registerUser --> logRegistration
+
+registerUser -.- validate-user
+registerUser -.- create-user
+registerUser -.- send-confirmation-email
+registerUser -.- log-registration
+
+
+validateUser -.->validate-user
+
+createUser -.->create-user
+
+sendConfirmationEmail -.->send-confirmation-email
+
+logRegistration -.->log-registration
+```
+
+That means that I cannot use any of the intermediate functions in a different context that the one aiming to achieve all
+those goals.
+
+I use **inherit** on purpose because the problem is similar to the one that arises when using inheritance for
+code reusability.
+
+### Single responsibility
+
+In the same line of the Goal coupling, every function that calls another function is coupling its own responsibility
+with the next one. In some case it makes sense. For example, `registerUser` is the final responsible for all the effects
+(store in DB, send email, etc) related to registering a user even if it delegates each one to a specific function.
+
+`validateUser` should have the only responsibility of validating a user, but, by using function call cascading we are
+indirectly adding the responsibility of creating user, sending an email, etc.
+
+### Testing
+
+Function call cascading also impacts the testing of the functions.
+When testing `registerUser` I might want to mock all the environment to make sure that the I/O
+is correct, but I should be able to test the rest of functions in isolation.
+
+By using function call cascading we are forced to mock the environment for testing each single function.
+
+> A disclaimer here is that some languages make it easier to mock intermediate functions (like python with pytest fixtures).
