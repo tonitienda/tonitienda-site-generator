@@ -2,22 +2,13 @@
 
 ## Introduction
 
-Improving the reusability and composability of software components is a common goal we all strive for.
-However, more often than not, we find ourselves falling short without a clear understanding of why.
-Sometimes, we favor one approach over another without a solid rationale, labeling the differences as
-mere programming styles.
+Improving the reusability and composability of software components is a common goal we all strive for. However, more often than not, we find ourselves falling short without a clear understanding of why. Sometimes, we favor one approach over another without a solid rationale, labeling the differences as mere programming styles.
 
-In my case, I have a preference for writing code that reads like recipes. I strive to develop functions
-or components as if they will be utilized by multiple clients, even if that's not the current scenario.
-This personal style offers benefits such as reusability and testability, but I have also realized that it
-tends to veer toward overengineering, so it's important to keep that in check.
+In my case, I have a preference for writing code that reads like recipes. I strive to develop functions or components as if they will be utilized by multiple clients, even if that's not the current scenario. This personal style offers benefits such as reusability and testability, but I have also realized that it tends to veer toward overengineering, so it's important to keep that in check.
 
-During a recent refactoring process, I encountered a situation where the code followed a different style,
-and I found it more challenging to reason about, test, and reuse. Yet, I couldn't pinpoint a specific
-term or a clear, general rationale to explain why I felt that way.
+During a recent refactoring process, I encountered a situation where the code followed a different style, and I found it more challenging to reason about, test, and reuse. Yet, I couldn't pinpoint a specific term or a clear, general rationale to explain why I felt that way.
 
-Upon reflection, I discovered the root of the problem, and with the help of Chat GPT, I uncovered the
-terms associated with those distinct styles.
+Upon reflection, I discovered the root of the problem, and with the help of Chat GPT, I uncovered the terms associated with those distinct styles.
 
 To illustrate the problem clearly and make it more apparent, I will provide an example.
 
@@ -27,7 +18,7 @@ Consider a web application that processes user registrations. When a new user si
 
 ### Function call cascading
 
-One way of implementing this functionality using function call cascading:
+One way of implementing this functionality is using function call cascading:
 
 ```mermaid
 
@@ -78,12 +69,11 @@ function logRegistration(userData) {
 }
 ```
 
-Although this example with simplified code might seem strange and obvious, we often use this pattern and make functions call
-the next function in the sequence.
+Although this simplified code example might seem obvious, we often use this pattern and make functions call the next function in the sequence.
 
 ### Recipe - Composition
 
-The other way is using a recipe-like expression:
+Another way is to use a recipe-like expression:
 
 ```mermaid
 
@@ -133,19 +123,18 @@ function logRegistration(userData) {
 
 ## Analysis
 
-### Goal coupling
+### Objective coupling
 
-When using function call cascading, all functions are coupled to the goal of the functions that
-are called down the line.
+When employing function call cascading, all functions become tightly coupled to the objectives of the functions they call down the line.
 
-For example, if registerUser has the goals:
+For instance, let's consider the `registerUser` function with the following goals:
 
-- validate user
-- create user
-- send confirmation email
-- log registration
+- Validate user
+- Create user
+- Send confirmation email
+- Log registration
 
-`validateUser` will **inherit** the same goals. `createUser` will inherit all goals except validate user, etc.
+In this case, the `validateUser` function will **inherit** the same goals as `registerUser`. Similarly, the `createUser` function will inherit all goals except for the validation of the user, and so on.
 
 ```mermaid
 
@@ -233,27 +222,26 @@ sendConfirmationEmail -.->send-confirmation-email
 logRegistration -.->log-registration
 ```
 
-That means that I cannot use any of the intermediate functions in a different context that the one aiming to achieve all
-those goals.
+This means that I cannot use any of the intermediate functions in a different context than the one aimed at achieving all those goals.
 
-I use **inherit** on purpose because the problem is similar to the one that arises when using inheritance for
-code reusability.
+I intentionally use the term **inherit** because the problem is reminiscent of the issues that arise when using inheritance for code reusability.
 
 ### Single responsibility
 
-In the same line of the Goal coupling, every function that calls another function is coupling its own responsibility
-with the next one. In some case it makes sense. For example, `registerUser` is the final responsible for all the effects
-(store in DB, send email, etc) related to registering a user even if it delegates each one to a specific function.
+In line with the issue of objective coupling, every function that calls another function becomes coupled with the responsibilities of the subsequent function. While this coupling may make sense in some cases, such as the `registerUser` function being responsible for all the effects (storing in a database, sending emails, etc.) related to user registration, even if it delegates each effect to a specific function.
 
-`validateUser` should have the only responsibility of validating a user, but, by using function call cascading we are
-indirectly adding the responsibility of creating user, sending an email, etc.
+On the other hand, the `validateUser` function should solely be responsible for user validation. However, by utilizing function call cascading, we inadvertently introduce the responsibility of creating a user, sending emails, and so on.
 
 ### Testing
 
-Function call cascading also impacts the testing of the functions.
-When testing `registerUser` I might want to mock all the environment to make sure that the I/O
-is correct, but I should be able to test the rest of functions in isolation.
+When conducting integration testing on the `registerUser` function (or any other top-level entry point), it becomes necessary to mock the entire I/O environment to ensure
 
-By using function call cascading we are forced to mock the environment for testing each single function.
+correct behavior. However, it would be preferable to conduct unit tests on the individual composed functions in isolation.
 
-> A disclaimer here is that some languages make it easier to mock intermediate functions (like python with pytest fixtures).
+As a result of the objective and responsibility coupling, when function call cascading is used, we find ourselves obligated to mock the environment for testing each of the composed functions as well.
+
+> It's worth noting that certain languages, like Python with pytest fixtures, provide mechanisms that facilitate the mocking of intermediate functions.
+
+## Conclusion
+
+To enhance code reusability, testability, readability, and more, it is crucial to be self-conscious when encountering deep function call cascades. Take a moment to consider whether the flow you're attempting to describe could be flattened and written as a recipe instead. I firmly believe that by keeping a vigilant eye on this aspect, we can improve both our code and our overall development experiences.
