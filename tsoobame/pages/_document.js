@@ -7,12 +7,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en" style={{ height: "100%" }}>
         <Head>
-          <title>Tsoobame</title>
-
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
           <link
             rel="stylesheet"
             href="https://unpkg.com/prism-themes@1.9.0/themes/prism-vsc-dark-plus.min.css"
@@ -22,6 +16,10 @@ export default class MyDocument extends Document {
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=G-Z67DVHFVCM`}
+          />
+          <script
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.0/mermaid.min.js"
           />
           <script
             dangerouslySetInnerHTML={{

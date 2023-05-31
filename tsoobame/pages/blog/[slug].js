@@ -56,7 +56,7 @@ const PostPage = ({ post }) => {
       }}
     >
       <Head>
-        <title>Tsoobame - {post.title}</title>
+        <title>{`Tsoobame - ${post.title}`}</title>
       </Head>
       <Grid
         container
