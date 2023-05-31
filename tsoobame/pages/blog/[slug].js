@@ -3,7 +3,7 @@ import { MDXRemote } from "next-mdx-remote";
 import mermaidPlugin from "mdx-mermaid";
 import { Mermaid } from "mdx-mermaid/Mermaid";
 import Image from "next/image";
-
+import remarkPrismPlugin from "remark-prism";
 import fs from "fs";
 import path from "path";
 import { Box, Typography } from "@mui/material";
@@ -30,7 +30,9 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const markdown = fs.readFileSync(path.join("posts", filePath), "utf-8");
   const post = posts.find((p) => p.filePath === filePath);
   const mdxSource = await serialize(markdown, {
-    mdxOptions: { remarkPlugins: [mermaidPlugin] },
+    mdxOptions: {
+      remarkPlugins: [mermaidPlugin, remarkPrismPlugin],
+    },
   });
   return {
     props: {

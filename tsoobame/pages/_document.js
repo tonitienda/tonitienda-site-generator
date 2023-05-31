@@ -13,7 +13,10 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/prism-themes@1.9.0/themes/prism-vsc-dark-plus.min.css"
+          ></link>
           {this.props.emotionStyleTags}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
