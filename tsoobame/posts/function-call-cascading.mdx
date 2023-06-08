@@ -18,7 +18,8 @@ Consider a web application that processes user registrations. When a new user si
 
 ### Function call cascading
 
-One way of implementing this functionality is using function call cascading:
+One way of implementing this functionality is using function call cascading.
+We can visualize it as a sequence:
 
 ```mermaid
 
@@ -36,6 +37,8 @@ One way of implementing this functionality is using function call cascading:
   createUser ->> sendConfirmationEmail: userData
   sendConfirmationEmail ->> logRegistration: userData
 ```
+
+And the code would look like:
 
 ```javascript
 function registerUser(userData) {
@@ -69,11 +72,21 @@ function logRegistration(userData) {
 }
 ```
 
-Although this simplified code example might seem obvious, we often use this pattern and make functions call the next function in the sequence.
+The code will run in sequence, one function after another. If one function fails the next
+one will not be executed.
 
-### Recipe - Composition
+From a functional point of view, this works as expected and `registerUser` will do what
+it is intended to.
 
-Another way is to use a recipe-like expression:
+### Function Orchestration
+
+> Function orchestration: a component organizes and decides the order and need to execute a given set
+> of functions. (I had some troubles naming this style. Let me know if there are better / existing names)
+
+Another way to implement the same functionality is to use a recipe-like sequence of functions
+to be executed.
+
+As a sequence it would look like:
 
 ```mermaid
 
@@ -91,6 +104,8 @@ Another way is to use a recipe-like expression:
   registerUser ->> sendConfirmationEmail: userData
   registerUser ->> logRegistration: userData
 ```
+
+And this is the code:
 
 ```javascript
 function registerUser(userData) {
@@ -122,6 +137,11 @@ function logRegistration(userData) {
 ```
 
 ## Analysis
+
+Although the example is very basic and might be obvious that something is off in the first example,
+I have seen this style in multiple projects I have worked on. Usually hidden in complex logic.
+
+In the following subsections you can find some of the reasons why the second approach should be preferred.
 
 ### Objective coupling
 
@@ -244,4 +264,17 @@ As a result of the objective and responsibility coupling, when function call cas
 
 ## Conclusion
 
-To enhance code reusability, testability, readability, and more, it is crucial to be self-conscious when encountering deep function call cascades. Take a moment to consider whether the flow you're attempting to describe could be flattened and written as a recipe instead. I firmly believe that by keeping a vigilant eye on this aspect, we can improve both our code and our overall development experiences.
+In general, to enhance code reusability, testability, readability, and more, it is crucial to be self-conscious when encountering deep function call cascades.
+Take a moment to consider whether the flow you are attempting to describe could be flattened and written as a recipe instead.
+I firmly believe that by keeping a vigilant eye on this aspect, we can improve both our code and our overall development experiences.
+
+### But...
+
+As most (interesting and fun) things in software, decisions on what is best depends on the context of the decision
+and creating general rules is oversimplistic.
+
+As a counter example of my own post, there are some patterns that promote the use of function call cascading while
+maintaining the flexibility of the system.
+For example when we use [Chain of responsibility](https://refactoring.guru/design-patterns/chain-of-responsibility) like
+in middlewares, each middleware will call the next. But each of them are unaware of what middleware is next since
+that decision is taken in another component, and therefore the middlewares can be plugged together in any way.
