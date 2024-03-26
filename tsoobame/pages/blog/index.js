@@ -21,7 +21,7 @@ export default function Posts({ posts }) {
   return (
     <>
       <Head>
-        <title>Tsoobame - Blog</title>
+        <title>Blog</title>
       </Head>
       <PostGrid posts={posts} />
     </>

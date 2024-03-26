@@ -30,7 +30,7 @@ export default function PostTag({ posts, tag }) {
   return (
     <>
       <Head>
-        <title>Tsoobame - Tags: {tag} </title>
+        <title>Tags: {tag} </title>
       </Head>
       <PostGrid posts={posts} />
     </>

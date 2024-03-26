@@ -11,7 +11,7 @@ import Head from "next/head";
 const References = () => (
   <>
     <Head>
-      <title>Tsoobame - Recommended resources </title>
+      <title>Recommended resources </title>
     </Head>
 
     <Box>

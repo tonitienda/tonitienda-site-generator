@@ -13,7 +13,7 @@ import Link from "next/link";
 const Projects = () => (
   <>
     <Head>
-      <title>Tsoobame - Projects </title>
+      <title>Toni Tienda - Projects </title>
     </Head>
 
     <Grid container alignItems="space-between" alignContent="space-between">

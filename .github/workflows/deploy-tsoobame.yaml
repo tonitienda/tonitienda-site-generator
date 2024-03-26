@@ -40,3 +40,14 @@ jobs:
           destination-repository-name: "tsoobame.github.io"
           user-email: ${{ secrets.SSH_KEY_EMAIL }}
           target-branch: main
+      - name: Push to tonitienda repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_TT }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "tonitienda/build"
+          destination-github-username: "tonitienda"
+          destination-repository-name: "tonitienda.github.io"
+          user-email: ${{ secrets.SSH_KEY_EMAIL }}
+          target-branch: main

@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tsoobame</title>
+        <title>Toni Tienda</title>
       </Head>
       <ThemeProvider theme={theme}>
         <Header />
