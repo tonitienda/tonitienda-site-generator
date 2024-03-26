@@ -46,7 +46,7 @@ jobs:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_TT }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: "tonitienda/build"
+          source-directory: "tsoobame/build"
           destination-github-username: "tonitienda"
           destination-repository-name: "tonitienda.github.io"
           user-email: ${{ secrets.SSH_KEY_EMAIL }}
