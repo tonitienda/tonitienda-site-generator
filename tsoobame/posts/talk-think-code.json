@@ -1,0 +1,14 @@
+{
+  "title": "Talk, think, code",
+  "date": "2024-03-26",
+  "description": "Shifting focus in software development: from code-centric to the crucial interplay of conversation, contemplation, and coding",
+  "thumbnail": {
+    "url": "/images/talk-think-code.jpeg",
+    "attribution": {
+      "name": "Paul Bulai",
+      "url": "https://unsplash.com/@pcbulai?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+    }
+  },
+  "tags": ["software", "tdd", "pair programming"],
+  "filePath": "talk-think-code.mdx"
+}
