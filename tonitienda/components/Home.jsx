@@ -2,7 +2,6 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import Link from "next/link";
 
 export const getStaticProps = async () => {
   const files = fs.readdirSync(path.join("posts"));
@@ -28,7 +27,7 @@ export default function Home({ posts }) {
   return (
     <div className="mt-5">
       {posts.map((post, index) => (
-        <Link href={"/blog/" + post.slug} passHref key={index}>
+        <a href={"/blog/" + post.slug} key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: "540px" }}>
             <div className="row g-0">
               <div className="col-md-8">
@@ -54,7 +53,7 @@ export default function Home({ posts }) {
               </div>
             </div>
           </div>
-        </Link>
+        </a>
       ))}
     </div>
   );

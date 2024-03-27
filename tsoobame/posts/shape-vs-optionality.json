@@ -3,7 +3,7 @@
   "date": "2022-08-28",
   "description": "Separation between the shape of an entity and the optionality of its fields as a way of improving reusability and simplicity.",
   "thumbnail": {
-    "url": "/images/shape-vs-optionality.jpeg",
+    "url": "shape-vs-optionality.jpg",
     "attribution": {
       "name": "Alfons Morales",
       "url": "https://unsplash.com/@alfonsmc10?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"

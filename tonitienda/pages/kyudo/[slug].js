@@ -64,7 +64,7 @@ const PostPage = ({ post }) => {
           <Sidebar />
         </Grid>
         <Grid item xs={12} md={9}>
-          <img
+          <Image
             src={post.thumbnail.url}
             style={{
               height: 200,

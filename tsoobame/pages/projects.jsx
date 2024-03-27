@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import Head from "next/head";
-import Link from "next/link";
 
 const Projects = () => (
   <>
@@ -29,17 +28,17 @@ const Projects = () => (
           </CardContent>
           <CardActions>
             <Button size="small">
-              <Link href={"/blog?tags=cinc-estrelles"}>
+              <a href={"/tags/cinc-estrelles.html"}>
                 <Button size="small"> See articles</Button>
-              </Link>
+              </a>
             </Button>
-            <Link
+            <a
               href={"https://github.com/tonitienda/cinc-estrelles"}
               target="_blank"
               rel="noreferrer"
             >
               <Button size="small">Visit</Button>
-            </Link>
+            </a>
           </CardActions>
         </Card>
       </Grid>

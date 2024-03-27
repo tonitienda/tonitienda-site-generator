@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Link from "next/link";
 
 const pages = [
   {
@@ -17,16 +16,14 @@ const ResponsiveAppBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         {pages.map((page) => (
           <Button key={page} sx={{ color: "white" }}>
-            <Link
+            <a
               key={page.url}
               href={page.url}
               color="inherit"
-              style={{ color: "white" }}
+              style={{ color: "white", textDecoration: "none" }}
             >
-              <a style={{ color: "white", textDecoration: "none" }}>
-                {page.title}
-              </a>
-            </Link>
+              {page.title}
+            </a>
           </Button>
         ))}
       </Box>

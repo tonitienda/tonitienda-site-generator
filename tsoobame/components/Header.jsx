@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Toolbar, AppBar } from "@mui/material";
-import Link from "./Link";
 import { createStyles, makeStyles } from "@mui/styles";
 import NavBar from "./NavBar";
 
@@ -42,9 +41,13 @@ const Header = () => {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Link color="inherit" href="/" style={{ textDecoration: "none" }}>
+          <a
+            color="inherit"
+            href="/"
+            style={{ color: "white", textDecoration: "none" }}
+          >
             tsoobame
-          </Link>
+          </a>
         </Typography>
         <NavBar />
       </Toolbar>

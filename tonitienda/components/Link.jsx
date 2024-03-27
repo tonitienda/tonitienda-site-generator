@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
-import { useRouter } from 'next/router';
-import clsx from 'clsx';
-import NextLink from 'next/link';
-import MuiLink from '@mui/material/Link';
-import PropTypes from 'prop-types';
+import React, { forwardRef } from "react";
+import { useRouter } from "next/router";
+import clsx from "clsx";
+import NextLink from "next/link";
+import MuiLink from "@mui/material/Link";
+import PropTypes from "prop-types";
 
-const NextComposed = forwardRef(function NextComposed(props, ref){
+const NextComposed = forwardRef(function NextComposed(props, ref) {
   const { href, as, prefetch, ...other } = props;
   return (
     <NextLink href={href} as={as} prefetch={prefetch}>
@@ -14,23 +14,23 @@ const NextComposed = forwardRef(function NextComposed(props, ref){
   );
 });
 
-NextComposed.propTypes={
+NextComposed.propTypes = {
   as: PropTypes.string,
   prefetch: PropTypes.func,
   props: PropTypes.object,
   href: PropTypes.string,
-}
+};
 
 const Link = ({
   href,
   className: classNameProps,
-  activeClassName = 'active',
+  activeClassName = "active",
   ...other
 }) => {
   const router = useRouter();
-  const pathname = typeof href === 'string' ? href : href.pathname;
+  const pathname = typeof href === "string" ? href : href.pathname;
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName
+    [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
   return (
@@ -43,10 +43,10 @@ const Link = ({
   );
 };
 
-Link.propTypes={
+Link.propTypes = {
   activeClassName: PropTypes.string,
   className: PropTypes.string,
   href: PropTypes.string,
-}
+};
 
 export default Link;

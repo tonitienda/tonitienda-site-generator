@@ -1,8 +1,6 @@
-import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import Link from "next/link";
 
 export const getStaticProps = async () => {
   const files = fs.readdirSync(path.join("posts"));
@@ -28,7 +26,7 @@ export default function Home({ posts }) {
   return (
     <div className="mt-5">
       {posts.map((post, index) => (
-        <Link href={"/blog/" + post.slug} passHref key={index}>
+        <a href={"/blog/" + post.slug + ".html"} passHref key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: "540px" }}>
             <div className="row g-0">
               <div className="col-md-8">
@@ -43,18 +41,14 @@ export default function Home({ posts }) {
                 </div>
               </div>
               <div className="col-md-4 m-auto">
-                <Image
-                  src={post.frontMatter.thumbnailUrl}
-                  className="img-fluid mt-1 rounded-start"
-                  alt="thumbnail"
-                  width={500}
-                  height={400}
-                  objectFit="cover"
+                <img
+                  src={`https://res.cloudinary.com/ddkok43g3/image/upload/t_Thumbnail/v1711551544/${post.thumbnail.url}`}
+                  alt={post.title}
                 />
               </div>
             </div>
           </div>
-        </Link>
+        </a>
       ))}
     </div>
   );

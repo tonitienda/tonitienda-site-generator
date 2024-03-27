@@ -27,27 +27,14 @@ jobs:
         run: yarn
       - name: Build
         run: yarn run build
-      - name: Export
-        run: yarn run export
       - name: Push to tsoobame repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: "tsoobame/build"
+          source-directory: "tsoobame/out"
           destination-github-username: "tsoobame"
           destination-repository-name: "tsoobame.github.io"
-          user-email: ${{ secrets.SSH_KEY_EMAIL }}
-          target-branch: main
-      - name: Push to tonitienda repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_TT }}
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: "tsoobame/build"
-          destination-github-username: "tonitienda"
-          destination-repository-name: "tonitienda.github.io"
           user-email: ${{ secrets.SSH_KEY_EMAIL }}
           target-branch: main

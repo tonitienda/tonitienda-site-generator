@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
 import { CardHeader, Chip } from "@mui/material";
 import { Box } from "@mui/system";
 
@@ -27,7 +26,7 @@ export default function PostCard({ post }) {
         component="img"
         alt={post.title}
         height="140"
-        image={post.thumbnail.url}
+        image={`https://res.cloudinary.com/ddkok43g3/image/upload/w_600,f_auto,q_auto/v1711551544/${post.thumbnail.url}`}
       />
       <Attribution attribution={post.thumbnail.attribution} />
       <CardHeader title={post.title}></CardHeader>
@@ -37,17 +36,17 @@ export default function PostCard({ post }) {
         </Typography>
         <Box style={{ marginTop: 24 }}>
           {post.tags.map((t) => (
-            <Link key={t} href={`/blog/tags/${t}`}>
+            <a key={t} href={`/blog/tags/${t}.html`}>
               <Chip label={t} variant="outlined" />
-            </Link>
+            </a>
           ))}
         </Box>
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Link href={`/blog/${post.slug}`} passHref>
+        <a href={`/blog/${post.slug}.html`} passHref>
           <Button size="small">Learn More</Button>
-        </Link>
+        </a>
       </CardActions>
     </Card>
   );

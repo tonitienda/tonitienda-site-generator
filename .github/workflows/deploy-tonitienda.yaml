@@ -2,8 +2,12 @@ name: deploy tonitienda
 # until things are better defined, I will publish software posts
 # to both Tsoobame and Tonitienda.
 on:
-  never:
-
+  workflow_dispatch:
+  # push:
+  #   branch:
+  #     - main
+  #   paths:
+  #     - "tonitienda/**"
 defaults:
   run:
     working-directory: tonitienda

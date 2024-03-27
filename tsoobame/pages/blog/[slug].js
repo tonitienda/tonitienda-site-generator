@@ -69,13 +69,8 @@ const PostPage = ({ post }) => {
         </Grid>
         <Grid item xs={12} md={9}>
           <img
-            src={post.thumbnail.url}
-            style={{
-              height: 200,
-              objectFit: "cover",
-            }}
-            width="100%"
-            height="200"
+            src={`https://res.cloudinary.com/ddkok43g3/image/upload/t_Banner 16:9/v1711551544/${post.thumbnail.url}`}
+            alt={post.title}
           />
           <Typography variant="body1">⏱ {text}</Typography>
           <Box>

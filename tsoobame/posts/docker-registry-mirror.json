@@ -3,7 +3,7 @@
   "date": "2022-09-05",
   "description": "Why I configured a docker registry in my local machine to improve my development process",
   "thumbnail": {
-    "url": "/images/docker-registry-mirror.jpeg",
+    "url": "docker-registry-mirror.jpg",
     "attribution": {
       "name": "Guillaume Bolduc",
       "url": "https://unsplash.com/@guibolduc"
