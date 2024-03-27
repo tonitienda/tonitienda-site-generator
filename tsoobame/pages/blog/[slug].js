@@ -71,6 +71,7 @@ const PostPage = ({ post }) => {
           <img
             src={`https://res.cloudinary.com/ddkok43g3/image/upload/t_Banner 16:9/v1711551544/${post.thumbnail.url}`}
             alt={post.title}
+            width="100%"
           />
           <Typography variant="body1">⏱ {text}</Typography>
           <Box>
