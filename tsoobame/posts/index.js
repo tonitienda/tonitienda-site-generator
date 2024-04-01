@@ -4,7 +4,9 @@ import shapeVsOptionality from "./shape-vs-optionality.json";
 import dockerRegistryMirror from "./docker-registry-mirror.json";
 import functionCallCascading from "./function-call-cascading.json";
 import talkThinkCode from "./talk-think-code.json";
+import resumeDrivenDevelopment from "./resume-driven-development.json";
 
+// TODO - Sort posts by date descending
 export default [
   dataLoader,
   graphqlSchema,
@@ -12,6 +14,7 @@ export default [
   dockerRegistryMirror,
   functionCallCascading,
   talkThinkCode,
+  resumeDrivenDevelopment,
 ].map((post) => ({
   ...post,
   slug: post.filePath.split(".")[0],

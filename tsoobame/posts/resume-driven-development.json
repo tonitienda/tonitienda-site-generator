@@ -1,0 +1,14 @@
+{
+  "title": "Resume Driven Development",
+  "date": "2024-04-01",
+  "description": "A reflection on technology choices in Software Engineering",
+  "thumbnail": {
+    "url": "resume-driven-development.jpg",
+    "attribution": {
+      "name": "Todd Kent",
+      "url": "https://unsplash.com/@churchoftodd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+    }
+  },
+  "tags": ["software", "design", "project", "boring"],
+  "filePath": "resume-driven-development.mdx"
+}
