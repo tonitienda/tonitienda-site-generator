@@ -15,7 +15,9 @@ export default [
   functionCallCascading,
   talkThinkCode,
   resumeDrivenDevelopment,
-].map((post) => ({
-  ...post,
-  slug: post.filePath.split(".")[0],
-}));
+]
+  .map((post) => ({
+    ...post,
+    slug: post.filePath.split(".")[0],
+  }))
+  .sort((p1, p2) => (p1.date > p2.date ? -1 : 1));

@@ -2,7 +2,6 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import mermaidPlugin from "mdx-mermaid";
 import { Mermaid } from "mdx-mermaid/Mermaid";
-import Image from "next/image";
 import remarkPrismPlugin from "remark-prism";
 import fs from "fs";
 import path from "path";
@@ -47,12 +46,12 @@ export const getStaticProps = async ({ params: { slug } }) => {
 };
 
 const PostPage = ({ post }) => {
-  const { text } = useReadingTime(post.markdown);
+  const { readingTime } = useReadingTime(post.markdown);
   return (
     <Box
       style={{
         width: "auto",
-        padding: 12,
+        padding: 6,
       }}
     >
       <Head>
@@ -73,7 +72,8 @@ const PostPage = ({ post }) => {
             alt={post.title}
             width="100%"
           />
-          <Typography variant="body1">⏱ {text}</Typography>
+          <Typography variant="h6">{post.date}</Typography>
+          <Typography variant="body1">⏱ {readingTime}</Typography>
           <Box>
             <MDXRemote
               {...post.mdxSource}

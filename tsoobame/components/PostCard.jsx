@@ -29,7 +29,7 @@ export default function PostCard({ post }) {
         image={`https://res.cloudinary.com/ddkok43g3/image/upload/w_600,f_auto,q_auto/v1711551544/${post.thumbnail.url}`}
       />
       <Attribution attribution={post.thumbnail.attribution} />
-      <CardHeader title={post.title}></CardHeader>
+      <CardHeader title={post.title} subheader={post.date}></CardHeader>
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {post.description}
@@ -43,7 +43,6 @@ export default function PostCard({ post }) {
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <a href={`/blog/${post.slug}.html`} passHref>
           <Button size="small">Learn More</Button>
         </a>
