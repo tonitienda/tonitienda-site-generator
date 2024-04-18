@@ -46,7 +46,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 };
 
 const PostPage = ({ post }) => {
-  const { readingTime } = useReadingTime(post.markdown);
+  const { text } = useReadingTime(post.markdown);
   return (
     <Box
       style={{
@@ -55,7 +55,7 @@ const PostPage = ({ post }) => {
       }}
     >
       <Head>
-        <title>{post.title}</title>
+        <title>Tsoobame - {post.title}</title>
       </Head>
       <Grid
         container
@@ -73,7 +73,7 @@ const PostPage = ({ post }) => {
             width="100%"
           />
           <Typography variant="h6">{post.date}</Typography>
-          <Typography variant="body1">⏱ {readingTime}</Typography>
+          <Typography variant="body1">⏱ {text}</Typography>
           <Box>
             <MDXRemote
               {...post.mdxSource}
