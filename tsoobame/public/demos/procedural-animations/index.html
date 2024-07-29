@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ebiten WASM</title>
+  </head>
+  <body>
+    <script src="wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(
+        fetch("procedural-animations.wasm"),
+        go.importObject
+      )
+        .then((result) => {
+          console.log("Running the application");
+          go.run(result.instance);
+        })
+        .catch((err) => {
+          console.error("Failed to load WASM:", err);
+        });
+    </script>
+  </body>
+</html>
